@@ -1,0 +1,45 @@
+{
+  "name": "tyfon-client",
+  "version": "0.1.0",
+  "description": "client-code for TyFON",
+  "main": "dist/es5/index.js",
+  "module": "dist/es6/index.js",
+  "types": "dist/es6/index.d.ts",
+  "files": [
+    "dist/es5",
+    "dist/es6"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "start": "ts-node-dev sample",
+    "test": "ts-node --project conf/typescript/test.json test.ts",
+    "build-es5": "tsc -p conf/typescript/es5.json",
+    "build-es6": "tsc -p conf/typescript/es6.json",
+    "build": "npm run build-es5 && npm run build-es6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loreanvictor/tyfon-client.git"
+  },
+  "author": "Eugene Ghanizadeh Khoub <ghanizadeh.eugene@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/loreanvictor/tyfon-client/issues"
+  },
+  "homepage": "https://github.com/loreanvictor/tyfon-client#readme",
+  "devDependencies": {
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^8.0.4",
+    "@types/node": "^14.14.9",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "ts-node": "^9.0.0",
+    "ts-node-dev": "^1.0.0",
+    "tyfon-server": "^0.1.0",
+    "typescript": "^4.1.2"
+  },
+  "dependencies": {
+    "cross-fetch": "^3.0.6",
+    "tyfon-conventions": "^0.1.1"
+  }
+}
