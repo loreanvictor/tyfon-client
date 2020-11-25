@@ -21,5 +21,17 @@ describe('tyfon-client', () => {
         }).catch(err => { clean(); done(err) });
       });
     });
+
+    it('should properly handle multiple arguments.', done => {
+      test({
+        getAdd: async (a: number, b: number) => a + b
+      }, (origin, clean) => {
+        invoke(origin, 'getAdd', 21, 42).then(v => {
+          clean();
+          v.should.equal(21 + 42);
+          done();
+        }).catch(err => { clean(); done(err) });
+      });
+    });
   });
 });

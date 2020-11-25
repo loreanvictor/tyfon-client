@@ -16,7 +16,7 @@ export type Req = RequestInit &{
 
 
 function encodeQuery(q: {[key: string]: string}) {
-  return Object.entries(q).map(([k, v]) => k + '=' + encodeURIComponent(v));
+  return Object.entries(q).map(([k, v]) => k + '=' + encodeURIComponent(v)).join('&');
 }
 
 
