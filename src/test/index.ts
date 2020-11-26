@@ -33,5 +33,18 @@ describe('tyfon-client', () => {
         }).catch(err => { clean(); done(err) });
       });
     });
+
+    it('should properly parse date objects.', done => {
+      test({
+        leDate: async () => ({ date: new Date('December 17, 1995 03:24:00') })
+      }, (origin, clean) => {
+        invoke(origin, 'leDate').then(res => {
+          clean();
+          res.date.should.be.instanceOf(Date);
+          res.date.getFullYear().should.equal(1995);
+          done();
+        }).catch(err => { clean(); done(err) });
+      });
+    });
   });
 });

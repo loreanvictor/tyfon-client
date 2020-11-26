@@ -1,4 +1,4 @@
-import { endpoint } from 'tyfon-conventions';
+import { endpoint, parseJson } from 'tyfon-conventions';
 import { fetch } from 'cross-fetch';
 
 
@@ -46,6 +46,6 @@ export async function invoke(origin: string, method: string, ...args: any[]) {
   if (response.status >= 400) {
     throw new HttpError(response.status, response.statusText);
   } else {
-    return await response.json();
+    return parseJson(await response.text());
   }
 }
