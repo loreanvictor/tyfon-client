@@ -46,5 +46,17 @@ describe('tyfon-client', () => {
         }).catch(err => { clean(); done(err) });
       });
     });
+
+    it('should properly handle void functions.', done => {
+      test({
+        leVoid: async () => {}
+      }, (origin, clean) => {
+        invoke(origin, 'leVoid').then(res => {
+          clean();
+          expect(res).to.be.undefined;
+          done();
+        }).catch(err => { clean(); done(err) });
+      });
+    });
   });
 });

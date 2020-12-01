@@ -1,6 +1,6 @@
 {
   "name": "tyfon-client",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "client-code for TyFON",
   "main": "dist/es5/index.js",
   "module": "dist/es6/index.js",

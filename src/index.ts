@@ -50,7 +50,7 @@ export async function invoke(origin: string, method: string, ...args: any[]) {
     if (text === '') {
       return;
     } else {
-      return parseJson(await response.text());
+      return parseJson(text);
     }
   }
 }
