@@ -46,6 +46,11 @@ export async function invoke(origin: string, method: string, ...args: any[]) {
   if (response.status >= 400) {
     throw new HttpError(response.status, response.statusText);
   } else {
-    return parseJson(await response.text());
+    const text = await response.text();
+    if (text === '') {
+      return;
+    } else {
+      return parseJson(await response.text());
+    }
   }
 }
