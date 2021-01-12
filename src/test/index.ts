@@ -47,6 +47,42 @@ describe('tyfon-client', () => {
       });
     });
 
+    it('should properly handle undefined arguments when passed as undefined.', done => {
+      test({
+        getX: async (a: string | undefined, b: string) => '[' + b + ']' + ' ' + (a || 'well ...')
+      }, (origin, clean) => {
+        invoke(origin, 'getX', undefined, 42).then(res => {
+          clean();
+          res.should.equal('[42] well ...');
+          done();
+        });
+      });
+    });
+
+    it('should properly handle undefined arguments when not passed..', done => {
+      test({
+        getX: async (b: string, a?: string) => '[' + b + ']' + ' ' + (a || 'well ...')
+      }, (origin, clean) => {
+        invoke(origin, 'getX', 42).then(res => {
+          clean();
+          res.should.equal('[42] well ...');
+          done();
+        });
+      });
+    });
+
+    it('should properly handle undefined arguments when not passed with post functions as well.', done => {
+      test({
+        x: async (b: string, a?: string) => '[' + b + ']' + ' ' + (a || 'well ...')
+      }, (origin, clean) => {
+        invoke(origin, 'x', 42).then(res => {
+          clean();
+          res.should.equal('[42] well ...');
+          done();
+        });
+      });
+    });
+
     it('should properly handle void functions.', done => {
       test({
         leVoid: async () => {}

@@ -9,7 +9,7 @@ export class HttpError extends Error {
 }
 
 
-export type Req = RequestInit &{
+export type Req = RequestInit & {
   url: string;
   query?: {[key: string]: string};
 }
@@ -35,7 +35,7 @@ export async function invoke(origin: string, method: string, ...args: any[]) {
 
   if (req.method === 'GET' || req.method === 'DELETE') {
     req.query = req.query || {};
-    args.forEach((arg, index) => req.query![index] = JSON.stringify(arg));
+    args.forEach((arg, index) => arg ? req.query![index] = JSON.stringify(arg) : undefined);
   } else {
     req.headers = req.headers || {};
     (req.headers as any)['Content-Type'] = 'application/json';
