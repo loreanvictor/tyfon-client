@@ -83,6 +83,30 @@ describe('tyfon-client', () => {
       });
     });
 
+    it('should properly transport falsy args.', done => {
+      test({
+        getX: async (a: any) => a === undefined
+      }, async (origin, clean) => {
+        const r1 = await invoke(origin, 'getX', '');
+        const r2 = await invoke(origin, 'getX', false);
+        const r3 = await invoke(origin, 'getX', 0);
+        const r4 = await invoke(origin, 'getX', null);
+        const r5 = await invoke(origin, 'getX', undefined);
+        const r6 = await invoke(origin, 'getX');
+
+        clean();
+
+        r1.should.be.false;
+        r2.should.be.false;
+        r3.should.be.false;
+        r4.should.be.true;
+        r5.should.be.true;
+        r6.should.be.true;
+
+        done();
+      });
+    });
+
     it('should properly handle void functions.', done => {
       test({
         leVoid: async () => {}

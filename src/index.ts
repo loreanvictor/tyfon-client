@@ -35,7 +35,11 @@ export async function invoke(origin: string, method: string, ...args: any[]) {
 
   if (req.method === 'GET' || req.method === 'DELETE') {
     req.query = req.query || {};
-    args.forEach((arg, index) => arg ? req.query![index] = JSON.stringify(arg) : undefined);
+    args.forEach((arg, index) =>
+      (arg !== undefined && arg !== null)
+        ? req.query![index] = JSON.stringify(arg)
+        : undefined
+    );
   } else {
     req.headers = req.headers || {};
     (req.headers as any)['Content-Type'] = 'application/json';
